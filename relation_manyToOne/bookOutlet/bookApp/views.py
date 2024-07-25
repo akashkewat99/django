@@ -1,0 +1,26 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+from . models import Book,Author
+
+# Create your views here.
+# def test(request):
+#     return HttpResponse("Sucess")
+
+def books(request):
+    getAllBooks= Book.objects.all()
+    return render(request,'bookApp/index.html',{'getAllBooks':getAllBooks})
+
+def author(request):
+    getAllAuthors= Author.objects.all()
+    return render(request,'bookApp/authors.html',{'getAllAuthors':getAllAuthors})
+
+
+def authorDetail(request,id):
+    getAuthorDetail=Author.objects.get(pk=id)
+    getAuthorBooks=Book.objects.filter(author=id)
+    return render(request,"bookApp/authorDetail.html",{'author_name':getAuthorDetail.name,'authorBook':getAuthorBooks})
+
+
+def bookDetails(request,id):
+    getBookDetail=Book.objects.get(pk=id)
+    return render(request,"bookApp/bookDetails.html",{"Book":getBookDetail})
