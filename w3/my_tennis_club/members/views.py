@@ -14,7 +14,9 @@ from .import models
 
 def members(request):
   mymembers=models.Member.objects.all() 
+#   return render(request,'members/myfirst.html',context=None)
   return render(request,'members/all_members.html',{'mymembers':mymembers})
+#   return render(request,'members/all_members.html',{'abc':mymembers})
 
 
 # def details(request, id):

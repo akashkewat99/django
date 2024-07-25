@@ -5,17 +5,25 @@
 {% block title %}
   My Tennis Club - List of all members
 {% endblock %}
+
+
 <body>
 
 {% block content %}
 <h1>Members</h1>
   
 <ul>
+  {% comment %} {% for x in abc %} {% endcomment %}
   {% for x in mymembers %}
-    <li><a href="details/{{ x.id }}">{{ x.firstname }} {{ x.lastname }}</a></li>
+    <li>
+      <a href="details/{{ x.id }}">{{ x.firstname }} {{ x.lastname }}</a>
+    </li>
   {% endfor %}
 </ul>
+
 {% endblock %}
 
 </body>
+
+
 </html>
