@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Hello Akash</h3>
+
+    {% for x in posts %}
+        <div>
+            <h3>Title: {{x.title}}</h3>
+            <h3>Create At: {{x.created_at}}</h3>
+        </div>
+    {% endfor %}
+</body>
+</html>
