@@ -28,7 +28,9 @@ def members(request):
 #   return HttpResponse(template.render(context, request))
 
 def details(request,id):
-    mymembers=models.Member.objects.get(id=id)
+    mymembers=models.Member.objects.get(pk=id)
+    temp=models.Member.objects.values()
+    print(id,temp)
     return render(request,'members/details.html',{'mymembers':mymembers})
 
 def main(request):
