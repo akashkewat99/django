@@ -21,7 +21,10 @@ def author(request):
 
 
 def authorDetail(request,id):
+    print(id)
     getAuthorDetail=Author.objects.get(pk=id)
+    print(getAuthorDetail)
+    print("Akash")
     getAuthorBooks=Book.objects.filter(author=id)
     print(getAuthorBooks)
     return render(request,"bookApp/authorDetail.html",{'author_name':getAuthorDetail.name,'authorBook':getAuthorBooks})
