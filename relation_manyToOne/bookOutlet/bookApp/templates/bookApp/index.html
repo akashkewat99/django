@@ -6,14 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Sucess</h1>
+    <a href="/">HomePage</a>
     
 
     <div>
         <ul>
             {% for element in getAllBooks %}
                 <li>
-                    {{element.title}} (Rating : {{element.rating}})
+                    {% comment %} {{element.title}} (Rating : {{element.rating}}) {% endcomment %}
+                    <a href={% url 'bookDetails' element.id%}>{{element.title}}</a> 
+                    [Rating : {{element.rating}} ]
                 </li>
             {% endfor %}
         </ul>

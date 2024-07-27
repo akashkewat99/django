@@ -13,7 +13,8 @@
         <ul>
             {% for element in getAllAuthors %}
                 <li>
-                    {{element.id}} (Name : {{element.name}})
+                    {% comment %} {{element.id}} (Name : {{element.name}}) {% endcomment %}
+                    Name : <a href={%url 'authoeDetails' element.id%}>{{element.name}}</a>
                 </li>
             {% endfor %}
         </ul>
