@@ -6,12 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    <h3>Hello Akash</h3>
-
+    <a href="/"><h1>HOME</h1></a>
+    
     {% for x in posts %}
         <div>
-            <h3>Title: {{x.title}}</h3>
-            <h3>Create At: {{x.created_at}}</h3>
+            <h4>Title: {{x.title}}</h4>
+            <h4>Create At: {{x.created_at}}</h4>
+            <p>Id: {{x.id}}</p>
+            <a href={% url 'PostUpdate' x.pk %}>update</a>
+            <a href={% url 'PostDelete' x.pk %}>delete</a>
+            <hr>
         </div>
     {% endfor %}
 </body>
