@@ -2,6 +2,7 @@ from django.views.generic import ListView,CreateView,UpdateView,DeleteView
 from .models import Post
 from django.shortcuts import render
 from . forms import PostForm
+from django.http import HttpResponse,JsonResponse
 
 def main(request):
     return render(request,'blog/main.html',{'context':None})
