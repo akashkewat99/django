@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
 from . models import Book,Author
+
 from . api.serializers import AuthorSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
+
 
 
 # Create your views here.
@@ -39,14 +42,14 @@ def author(request):
     if request.method == 'GET':
         getAllAuthors= Author.objects.all()
         serializer = AuthorSerializer(getAllAuthors,many=True)
-        return Response(serializer.data)
+        return Response(serializer.data,status=status.HTTP_200_OK)
     if request.method == 'POST':
         serializer=AuthorSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         else:
-            return Response(serializer.errors)
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
 # def authorDetail(request,id):
@@ -58,7 +61,7 @@ def author(request):
 #     print(getAuthorBooks)
 #     return render(request,"bookApp/authorDetail.html",{'author_name':getAuthorDetail.name,'authorBook':getAuthorBooks})
 
-@api_view(['GET','PUT'])
+@api_view(['GET','PUT','DELETE'])
 def getSingleauthorDetail(request,id):
     if request.method == 'GET':
             getAuthorDetail=Author.objects.get(pk=id)
@@ -73,6 +76,13 @@ def getSingleauthorDetail(request,id):
             return Response(serializer.data)
         else:
             return Response(serializer.errors)
+
+    if request.method == 'DELETE':
+        author = Author.objects.get(pk=id)
+        author.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+
 
     
 
